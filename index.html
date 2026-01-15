@@ -23,10 +23,10 @@ body, html {height:100%; font-family:'Roboto',sans-serif; color:#fff; overflow:h
 
 /* --- PARTICLES --- */
 .particles {position: fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1;}
-.particle {position:absolute; width:4px; height:4px; background: rgba(255,255,255,0.1); border-radius:50%; animation: float 10s linear infinite;}
+.particle {position:absolute; width:4px; height:4px; background: rgba(255,255,255,0.1); border-radius:50%; animation: float 12s linear infinite;}
 @keyframes float {
   0% {transform: translateY(0px) translateX(0px);}
-  50% {transform: translateY(-150px) translateX(80px);}
+  50% {transform: translateY(-150px) translateX(70px);}
   100% {transform: translateY(0px) translateX(0px);}
 }
 
@@ -35,37 +35,46 @@ body, html {height:100%; font-family:'Roboto',sans-serif; color:#fff; overflow:h
   position: absolute;
   top:50%; left:50%;
   transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.7);
-  border-radius: 30px;
-  padding: 40px 60px;
+  background: rgba(0,0,0,0.45); /* transparent black */
+  border-radius: 40px;
+  padding: 50px 60px;
   display:flex;
   flex-direction: column;
   align-items:center;
   text-align:center;
-  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+  box-shadow: 0 0 30px rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.2); /* thinner, subtle border */
+  backdrop-filter: blur(10px); /* adds frosted glass effect */
   animation: floatCard 6s ease-in-out infinite;
 }
 @keyframes floatCard {
   0% {transform: translate(-50%, -50%) translateY(0);}
-  50% {transform: translate(-50%, -50%) translateY(-15px);}
+  50% {transform: translate(-50%, -50%) translateY(-20px);}
   100% {transform: translate(-50%, -50%) translateY(0);}
 }
 
 /* --- PFP --- */
 .pfp {
   width:120px; height:120px; border-radius:50%;
-  border: 3px solid #fff;
+  border: 2px solid #fff;
   margin-bottom:20px;
   object-fit:cover;
+  box-shadow: 0 0 15px rgba(255,255,255,0.5);
 }
 
 /* --- USERNAME + BADGE --- */
 .username {
-  display:flex; align-items:center; gap:10px; margin-bottom:20px;
+  display:flex; align-items:center; gap:10px; margin-bottom:10px;
   font-family:'Orbitron', sans-serif; font-size:2rem;
-  color:#fff; text-shadow:0 0 10px #fff;
+  color:#fff; text-shadow:0 0 15px #fff;
 }
-.username img {width:30px; height:30px;}
+.username img {width:28px; height:28px;}
+
+/* --- DESCRIPTION --- */
+.description {
+  font-size:1rem; color:#aaa; margin-bottom:20px;
+  text-shadow:0 0 5px #fff;
+}
 
 /* --- DISCORD ICON BUTTON --- */
 .socials {display:flex; gap:20px; margin-top:10px;}
@@ -73,16 +82,17 @@ body, html {height:100%; font-family:'Roboto',sans-serif; color:#fff; overflow:h
   display:inline-block; width:50px; height:50px;
   border-radius:50%; overflow:hidden;
   transition: 0.3s;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 .socials a img {width:100%; height:100%; object-fit:contain;}
-.socials a:hover {transform: scale(1.2);}
+.socials a:hover {transform: scale(1.2); filter: drop-shadow(0 0 10px #7289da);}
 
 /* --- FOOTER --- */
 footer {position: fixed; bottom:10px; width:100%; text-align:center; font-size:0.8rem; color:#aaa; z-index:1;}
 
 /* --- RESPONSIVE --- */
 @media(max-width:600px){
-  .card {padding:30px 20px;}
+  .card {padding:30px 25px;}
   .username {font-size:1.5rem;}
   .pfp {width:90px; height:90px;}
   .socials a {width:40px; height:40px;}
@@ -105,6 +115,7 @@ footer {position: fixed; bottom:10px; width:100%; text-align:center; font-size:0
     Sami
     <img src="https://media.discordapp.net/attachments/1255692212717752513/1460551426693529736/84N4CEx.png?ex=6969f703&is=6968a583&hm=096672f8c09e1daf5f7bdb6d93c732e8e9566efe97fedef10366704fe6eeffb2&=&format=webp&quality=lossless" alt="Owner Badge">
   </div>
+  <div class="description">@rjuu on Discord</div>
   <div class="socials">
     <a href="https://discord.com/users/YOUR_DISCORD_ID" target="_blank">
       <img src="https://media.discordapp.net/attachments/1255692212717752513/1447057429471957063/indir-removebg-preview.png?ex=696a5000&is=6968fe80&hm=1ea7bf9dc1509bad41e187c83d626aa25914b1c86a25053d3f36830f8ec9f23e&=&format=webp&quality=lossless" alt="Discord">
@@ -132,7 +143,7 @@ for(let i=0;i<particleCount;i++){
 // --- AUTO SOUND ---
 const video = document.getElementById('bgVideo');
 video.muted = false;
-video.volume = 0.3; // adjust volume
+video.volume = 0.3;
 video.play().catch(()=>console.log("Autoplay blocked, user interaction may be required"));
 </script>
 
